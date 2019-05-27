@@ -11,7 +11,9 @@ router.post('', async (req,res)=>{
 
         const user = await User.findAll({where:{email,password}})
         if(user.length > 0){
-            const token = await jwt.sign({id:user[0].id},'shhh')
+            const token = await jwt.sign({id:user[0].id},'shhh',{
+                expiresIn: '2m'
+            })
             user[0].password = undefined
             return res.status(201).send({user:user[0],token})
         }
