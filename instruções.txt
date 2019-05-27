@@ -1,0 +1,6 @@
+configuração orm sequelize: https://blog.rocketseat.com.br/nodejs-express-sequelize/
+exemplo de upload de arquivos com multer: https://github.com/Rocketseat/youtube-upload-nodejs-reactjs-backend/tree/master/src
+
+
+criar migrate: npx sequelize migration:create --name=create-users
+rodar migrate: npx sequelize db:migrate
