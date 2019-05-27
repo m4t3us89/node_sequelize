@@ -18,4 +18,4 @@ app.use(
 require('./app/users')(app)
 require('./app/auth')(app)
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
