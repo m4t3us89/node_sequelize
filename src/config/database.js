@@ -6,4 +6,5 @@ module.exports = {
   database: process.env.DATABASE_DATABASE,
   host: process.env.DATABASE_HOST,
   dialect: process.env.DATABASE_DIALECT,
+  port: process.env.DATABASE_PORT ? process.env.DATABASE_PORT : '',
 }
