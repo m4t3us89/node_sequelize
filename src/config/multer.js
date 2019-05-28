@@ -19,7 +19,7 @@ const storageTypes = {
       });
     }
   }),
-  s3: multerS3({
+  s3: process.env.AMBIENTE_UPLOAD == 's3' ? multerS3({
     s3: new aws.S3(),
     bucket: process.env.BUCKET_NAME,
     contentType: multerS3.AUTO_CONTENT_TYPE,
@@ -33,7 +33,7 @@ const storageTypes = {
         cb(null, fileName);
       });
     }
-  })
+  }) : {}
 };
 
 module.exports = {
