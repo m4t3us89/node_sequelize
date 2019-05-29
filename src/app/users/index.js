@@ -22,14 +22,16 @@ routes.post('' , multer(multerConfig).single('file') , async (req,res)=>{
         user.password = undefined
         return res.status(201).send(user)
     }catch(err){
-        if(process.env.AMBIENTE_UPLOAD == 'local')
-            await fs.unlink( `${path.resolve(__dirname,  "..",  "..", "..", process.env.DIR_UPLOAD , process.env.DIR_UPLOAD_SUB)}/${req.file.key}` )
-        else{
-            await s3.deleteObject({
-            Bucket: process.env.BUCKET_NAME,
-            Key: key
-            })
-            .promise()
+        if( typeof(key) == undefined ){
+            if(process.env.AMBIENTE_UPLOAD == 'local')
+                await fs.unlink( `${path.resolve(__dirname,  "..",  "..", "..", process.env.DIR_UPLOAD , process.env.DIR_UPLOAD_SUB)}/${req.file.key}` )
+            else{
+                await s3.deleteObject({
+                Bucket: process.env.BUCKET_NAME,
+                Key: key
+                })
+                .promise()
+            }
         }
         return res.status(400).send(err)
     }
