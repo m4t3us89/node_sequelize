@@ -39,4 +39,8 @@ app.use(
 require('./app/users')(app)
 require('./app/auth')(app)
 
+app.get('*' , (req,res)=>{
+    return res.status(404).send({message:`Rota '${req.path}' não econtrada`})
+})
+
 app.listen(process.env.PORT || 3000)
